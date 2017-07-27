@@ -14,7 +14,6 @@ class Activities extends Component {
     } = props;
 
     this.filters = {};
-
     if (match.params._id) {
       this.filters = {
         createdBy: match.params._id,

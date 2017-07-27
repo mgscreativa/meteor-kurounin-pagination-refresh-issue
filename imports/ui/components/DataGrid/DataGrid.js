@@ -257,30 +257,9 @@ DataGrid.propTypes = {
   ),
 };
 
-export default createContainer((props) => {
-  let filters = {};
-
-  if (props.match.params._id) {
-    filters = {
-      createdBy: props.match.params._id,
-    };
+export default createContainer(props => (
+  {
+    ready: props.pagination.ready(),
+    items: props.pagination.getPage(),
   }
-
-  console.log(filters);
-
-  props.pagination.filters(filters);
-
-  const paginationSubscription = props.pagination;
-
-  if (paginationSubscription.ready() && props.pagination.getPage().length > 0) {
-    return {
-      ready: true,
-      items: props.pagination.getPage(),
-    };
-  }
-
-  return {
-    ready: false,
-    items: [],
-  };
-}, DataGrid);
+), DataGrid);
