@@ -13,6 +13,9 @@ const AuthenticatedNavigation = ({ name }) => (
       <LinkContainer to="/activities">
         <NavItem eventKey={1} href="/activities">Activities</NavItem>
       </LinkContainer>
+      <LinkContainer to="/activitiesnodatagrid">
+        <NavItem eventKey={1} href="/activitiesnodatagrid">Activities No DataGrid</NavItem>
+      </LinkContainer>
     </Nav>
     <Nav pullRight>
       <NavDropdown eventKey={2} title={name} id="user-nav-dropdown">

@@ -11,6 +11,7 @@ import Public from '../../components/Public/Public';
 import Index from '../../pages/Index/Index';
 import Documents from '../../pages/Documents/Documents';
 import Activities from '../../pages/Activities/Activities';
+import ActivitiesNoDataGrid from '../../pages/ActivitiesNoDataGrid/ActivitiesNoDataGrid';
 import NewDocument from '../../pages/NewDocument/NewDocument';
 import ViewDocument from '../../pages/ViewDocument/ViewDocument';
 import EditDocument from '../../pages/EditDocument/EditDocument';
@@ -42,6 +43,8 @@ const App = props => (
           <Authenticated exact path="/profile" component={Profile} {...props} />
           <Authenticated exact path="/activities/user/:_id" component={Activities} {...props} />
           <Authenticated exact path="/activities" component={Activities} {...props} />
+          <Authenticated exact path="/activitiesnodatagrid/user/:_id" component={ActivitiesNoDataGrid} {...props} />
+          <Authenticated exact path="/activitiesnodatagrid" component={ActivitiesNoDataGrid} {...props} />
           <Public path="/signup" component={Signup} {...props} />
           <Public path="/login" component={Login} {...props} />
           <Public path="/logout" component={Logout} {...props} />
