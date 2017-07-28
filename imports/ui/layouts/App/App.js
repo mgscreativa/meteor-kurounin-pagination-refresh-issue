@@ -31,7 +31,7 @@ import './App.scss';
 
 const App = props => (
   <Router>
-    {!props.loading ? <div className="App">
+    <div className="App">
       <Navigation {...props} />
       <Grid>
         <Switch>
@@ -43,7 +43,12 @@ const App = props => (
           <Authenticated exact path="/profile" component={Profile} {...props} />
           <Authenticated exact path="/activities/user/:_id" component={Activities} {...props} />
           <Authenticated exact path="/activities" component={Activities} {...props} />
-          <Authenticated exact path="/activitiesnodatagrid/user/:_id" component={ActivitiesNoDataGrid} {...props} />
+          <Authenticated
+            exact
+            path="/activitiesnodatagrid/user/:_id"
+            component={ActivitiesNoDataGrid}
+            {...props}
+          />
           <Authenticated exact path="/activitiesnodatagrid" component={ActivitiesNoDataGrid} {...props} />
           <Public path="/signup" component={Signup} {...props} />
           <Public path="/login" component={Login} {...props} />
@@ -57,9 +62,9 @@ const App = props => (
         </Switch>
       </Grid>
       <Footer />
-    </div> : ''}
+    </div>
   </Router>
-);
+    );
 
 App.propTypes = {
   loading: PropTypes.bool.isRequired,
