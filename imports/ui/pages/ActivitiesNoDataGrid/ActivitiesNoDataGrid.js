@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NoDataGrid } from '../../components/NoDataGrid';
 import ActivitiesCollection from '../../../api/Activities/Activities';
+import { getPageUrlValue } from '../../../ui/components/Navigation/Navigation';
 
 class ActivitiesNoDataGrid extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class ActivitiesNoDataGrid extends Component {
       name: 'activities.paginatedList',
       filters: this.filters,
       sort: {},
-      page: parseInt(match.params.page, 10) || 1,
+      page: getPageUrlValue(props.history),
       perPage: 10,
       reactive: false,
       debug: true,

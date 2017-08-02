@@ -47,7 +47,14 @@ export function getPageUrlValue(history) {
 const pageRegReplaceExp = /(.*[?&]page=)[0-9]+(.*)/i;
 export function changePage(history, page) {
   if (history && history.location) {
-    const query = history.location.search.replace(pageRegReplaceExp, `$1${page}$2`);
+    let query = history.location.search || '';
+
+    // if page is not in the query, add it
+    if (query.length === 0 || !query.match(pageRegExp)) {
+      query = `${query.length > 0 ? '&' : '?'}page=${page}`;
+    } else {
+      query = query.replace(pageRegReplaceExp, `$1${page}$2`);
+    }
 
     history.push({
       pathname: history.location.pathname,
