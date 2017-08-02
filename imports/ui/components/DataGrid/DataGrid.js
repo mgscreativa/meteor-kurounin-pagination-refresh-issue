@@ -7,6 +7,8 @@ import BootstrapPaginator from 'react-bootstrap-pagination';
 import { createContainer } from 'meteor/react-meteor-data';
 import Loading from '../Loading';
 import ButtonBar from './ButtonBar';
+import { getPageUrlValue, changePage } from '../Navigation/Navigation';
+
 
 class DataGrid extends Component {
   constructor(props) {
@@ -257,9 +259,13 @@ DataGrid.propTypes = {
   ),
 };
 
-export default createContainer(props => (
-  {
-    ready: props.pagination.ready(),
-    items: props.pagination.getPage(),
+export default createContainer((props) => {
+  if (getPageUrlValue(props.history) !== props.pagination.currentPage()) {
+      changePage(props.history, props.pagination.currentPage());
   }
-), DataGrid);
+
+  return {
+      ready: props.pagination.ready(),
+      items: props.pagination.getPage(),
+  }
+}, DataGrid);

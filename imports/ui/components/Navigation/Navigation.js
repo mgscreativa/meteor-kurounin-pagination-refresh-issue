@@ -30,3 +30,34 @@ Navigation.propTypes = {
 };
 
 export default Navigation;
+
+const pageRegExp = /[?&]page=([0-9]+)/i;
+export function getPageUrlValue(history) {
+  if (history && history.location && history.location.search) {
+    const matches = history.location.search.match(pageRegExp);
+
+    if (matches && matches[1]) {
+      return parseInt(matches[1], 10) || 1;
+    }
+  }
+
+  return 1;
+}
+
+const pageRegReplaceExp = /(.*[?&]page=)[0-9]+(.*)/i;
+export function changePage(history, page) {
+  if (history && history.location) {
+    const query = history.location.search.replace(pageRegReplaceExp, `$1${page}$2`);
+
+    history.push({
+      pathname: history.location.pathname,
+      search: query,
+      hash: history.location.hash,
+      state: history.location.state,
+    });
+
+    return true;
+  }
+
+  return false;
+}

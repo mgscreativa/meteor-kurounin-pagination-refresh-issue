@@ -23,6 +23,7 @@ class ActivitiesNoDataGrid extends Component {
       name: 'activities.paginatedList',
       filters: this.filters,
       sort: {},
+      page: parseInt(match.params.page, 10) || 1,
       perPage: 10,
       reactive: false,
       debug: true,
