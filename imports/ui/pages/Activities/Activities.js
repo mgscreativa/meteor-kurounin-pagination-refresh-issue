@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { DataGrid, LinkDetailsCell, DateCell, ActivityByUserCell } from '../../components/DataGrid';
 import ActivitiesCollection from '../../../api/Activities/Activities';
+import { getPageUrlValue } from '../../../ui/components/Navigation/Navigation';
 
 class Activities extends Component {
   constructor(props) {
@@ -24,6 +25,7 @@ class Activities extends Component {
       name: 'activities.paginatedList',
       filters: this.filters,
       sort: {},
+      page: getPageUrlValue(props.history),
       perPage: 10,
       reactive: false,
       debug: true,

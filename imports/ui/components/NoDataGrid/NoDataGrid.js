@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import BootstrapPaginator from 'react-bootstrap-pagination';
 import { createContainer } from 'meteor/react-meteor-data';
 import Loading from '../Loading';
+import { getPageUrlValue, changePage } from '../Navigation/Navigation';
 
 const NoDataGrid = (props) => {
   const {
@@ -13,7 +14,6 @@ const NoDataGrid = (props) => {
 
   if (!ready) { return <Loading />; }
 
-  console.log(items);
   return (
     <div>
       <ul>
@@ -42,9 +42,13 @@ NoDataGrid.propTypes = {
   pagination: PropTypes.object.isRequired,
 };
 
-export default createContainer(props => (
-  {
+export default createContainer((props) => {
+  if (getPageUrlValue(props.history) !== props.pagination.currentPage()) {
+    changePage(props.history, props.pagination.currentPage());
+  }
+
+  return {
     ready: props.pagination.ready(),
     items: props.pagination.getPage(),
-  }
-), NoDataGrid);
+  };
+}, NoDataGrid);
